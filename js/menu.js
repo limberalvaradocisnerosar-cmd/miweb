@@ -48,3 +48,46 @@ if (menuToggle && mobileMenu) {
     });
 }
 
+// Header sticky con efecto de scroll
+const header = document.querySelector('header');
+if (header) {
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        lastScroll = currentScroll;
+    });
+}
+
+// Animaciones fade-in al hacer scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+// Observar todas las secciones y cards
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.classList.add('fade-in');
+        observer.observe(section);
+    });
+    
+    const cards = document.querySelectorAll('.feature-card');
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+});
+
