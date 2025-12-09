@@ -14,17 +14,19 @@ Sitio web profesional para automatizaciones, bots y herramientas de IA.
 
 ```
 miWeb/
-├── assets/
-│   ├── style.css      # Estilos principales
-│   ├── menu.js        # Funcionalidad del menú
-│   ├── logo.png       # Logo de la marca
-│   └── *.png          # Imágenes del sitio
-├── index.html         # Página principal
-├── servicios.html     # Página de servicios
-├── proyectos.html     # Página de proyectos
-├── terminos.html      # Términos y condiciones
-├── privacidad.html    # Política de privacidad
-└── legal.html         # Aviso legal
+├── assets/          (solo imágenes: logo.png, calculadora.png, imagen1botwasp.png)
+├── css/
+│   └── style.css
+├── js/
+│   └── menu.js
+├── legal/
+│   ├── terminos.html
+│   ├── privacidad.html
+│   └── legal.html
+├── index.html
+├── servicios.html
+├── proyectos.html
+└── README.md
 ```
 
 ## Tecnologías
