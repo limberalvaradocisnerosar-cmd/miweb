@@ -129,9 +129,31 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
     
-    const cards = document.querySelectorAll('.feature-card');
+    const cards = document.querySelectorAll('.feature-card, .service-card, .process-step, .contact-item');
     cards.forEach(card => {
         observer.observe(card);
+    });
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                    if (mobileMenu.classList.contains('active')) {
+                        closeMenu();
+                    }
+                }
+            }
+        });
     });
 });
 
