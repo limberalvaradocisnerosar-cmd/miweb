@@ -1,12 +1,15 @@
-// Menú hamburguesa funcional - Código común para todas las páginas
 const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 let overlay = null;
 
+if (mobileMenu && mobileMenu.parentElement) {
+    document.body.appendChild(mobileMenu);
+}
+
 function createOverlay() {
     if (!overlay) {
         overlay = document.createElement('div');
-        overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 98; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;';
+        overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 9998; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;';
         document.body.appendChild(overlay);
     }
     return overlay;
@@ -40,6 +43,14 @@ if (menuToggle && mobileMenu) {
         }
     });
 
+    const menuClose = document.getElementById('menuClose');
+    if (menuClose) {
+        menuClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeMenu();
+        });
+    }
+
     const menuLinks = mobileMenu.querySelectorAll('a');
     menuLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -48,22 +59,17 @@ if (menuToggle && mobileMenu) {
     });
 }
 
-// Header sticky con efecto de scroll
 const header = document.querySelector('header');
 if (header) {
-    let lastScroll = 0;
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        if (currentScroll > 50) {
+        if (window.pageYOffset > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
-        lastScroll = currentScroll;
     });
 }
 
-// Animaciones fade-in al hacer scroll
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -77,7 +83,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observar todas las secciones y cards
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');
     sections.forEach(section => {
