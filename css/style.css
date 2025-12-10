@@ -1076,6 +1076,20 @@ footer a:hover {
         flex-direction: column;
         gap: 1.25rem;
     }
+    
+    .footer-content {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .footer-section h3 {
+        font-size: 0.9375rem;
+        margin-bottom: 0.875rem;
+    }
+    
+    .footer-links a {
+        font-size: 0.8125rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1139,6 +1153,28 @@ footer a:hover {
     .donar-premium {
         font-size: 1.1rem;
         padding: 14px 26px;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    
+    .footer-professional {
+        padding: 3rem 1rem 1.5rem;
+    }
+    
+    .footer-section h3 {
+        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .footer-links a {
+        font-size: 0.75rem;
+    }
+    
+    .footer-links li {
+        margin-bottom: 0.5rem;
     }
 }
 

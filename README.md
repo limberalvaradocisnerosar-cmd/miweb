@@ -1,4 +1,4 @@
-# Cisneros_lac - Sitio Web
+# Cisneros labs - Sitio Web
 
 Sitio web profesional para automatizaciones, bots y herramientas de IA.
 
@@ -14,7 +14,7 @@ Sitio web profesional para automatizaciones, bots y herramientas de IA.
 
 ```
 miWeb/
-├── assets/          (solo imágenes: logo.png, calculadora.png, imagen1botwasp.png)
+├── assets/          (solo imágenes: icono.png, calculadora.png, imagen1botwasp.png)
 ├── css/
 │   └── style.css
 ├── js/
@@ -54,6 +54,6 @@ WhatsApp: +5492215703862
 
 ## Licencia
 
-© 2025 Cisneros_lac – Todos los derechos reservados.
+© 2025 Cisneros labs – Todos los derechos reservados.
 
 
