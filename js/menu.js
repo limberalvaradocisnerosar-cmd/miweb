@@ -16,6 +16,11 @@ function createOverlay() {
 }
 
 function openMenu() {
+    const header = document.querySelector('header');
+    if (header && header.classList.contains('hidden')) {
+        header.classList.remove('hidden');
+        header.style.transform = 'translateY(0)';
+    }
     mobileMenu.classList.add('active');
     menuToggle.classList.add('active');
     const overlayEl = createOverlay();
@@ -61,13 +66,47 @@ if (menuToggle && mobileMenu) {
 
 const header = document.querySelector('header');
 if (header) {
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 50) {
+    let lastScroll = 0;
+    let ticking = false;
+    const scrollThreshold = 100;
+    
+    function updateHeader() {
+        const currentScroll = window.pageYOffset;
+        const scrollDifference = currentScroll - lastScroll;
+        
+        if (currentScroll > 30) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
+            header.classList.remove('hidden');
+            header.style.transform = 'translateY(0)';
+            lastScroll = currentScroll;
+            ticking = false;
+            return;
         }
-    });
+        
+        if (currentScroll > scrollThreshold) {
+            if (scrollDifference > 5) {
+                header.classList.add('hidden');
+            } else if (scrollDifference < -5) {
+                header.classList.remove('hidden');
+                header.style.transform = 'translateY(0)';
+            }
+        } else {
+            header.classList.remove('hidden');
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScroll = currentScroll;
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
+    }, { passive: true });
 }
 
 const observerOptions = {

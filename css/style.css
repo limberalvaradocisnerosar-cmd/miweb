@@ -91,34 +91,41 @@ body {
     position: relative;
 }
 
+
 header {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 0.875rem 1.5rem;
-    position: sticky;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    padding: 1rem 1.5rem;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
-    will-change: background-color, box-shadow;
-    transform: translateZ(0);
-    contain: layout style paint;
 }
 
 header.scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-bottom: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
 }
 
 header h1 {
@@ -151,7 +158,8 @@ header img.logo {
     flex-direction: column;
     gap: 4px;
     padding: 6px;
-    z-index: 101;
+    z-index: 102;
+    position: relative;
 }
 
 .menu-toggle span {
@@ -177,11 +185,11 @@ header img.logo {
 .mobile-menu {
     display: flex;
     position: fixed;
-    top: 1rem;
+    top: 5rem;
     right: -300px;
     width: 280px;
     max-width: calc(100vw - 2rem);
-    max-height: calc(100vh - 2rem);
+    max-height: calc(100vh - 6rem);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -253,18 +261,17 @@ header img.logo {
 
 main {
     padding: 0;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    transform: translateZ(0);
-    will-change: scroll-position;
+    width: 100%;
 }
 
 .hero-section {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #667eea 50%, #4facfe 75%, #00f2fe 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
-    padding: 5rem 2rem;
-    min-height: 80vh;
+    padding: 7rem 2rem 4rem 2rem;
+    min-height: 75vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -272,10 +279,6 @@ main {
     color: white;
     position: relative;
     overflow: hidden;
-    will-change: background-position;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-font-smoothing: antialiased;
     z-index: 1;
 }
 
@@ -307,50 +310,40 @@ main {
     bottom: 0;
     background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     opacity: 1;
-    will-change: auto;
-    transform: translateZ(0);
 }
 
 .hero-content {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
-    will-change: transform, opacity;
-    transform: translateZ(0);
-    contain: layout style paint;
 }
 
 .hero-title {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     font-weight: 900;
     margin-bottom: 1.5rem;
     line-height: 1.1;
-    letter-spacing: -2px;
+    letter-spacing: -1.5px;
     background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #ffffff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: fadeInUp 0.8s ease-out;
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-    will-change: transform, opacity;
-    transform: translateZ(0);
 }
 
 .hero-subtitle {
-    font-size: 1.625rem;
+    font-size: 1.375rem;
     margin-bottom: 3rem;
     opacity: 0.95;
-    line-height: 1.8;
-    max-width: 850px;
+    line-height: 1.7;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     color: #f0f4ff;
     font-weight: 400;
     letter-spacing: -0.2px;
     animation: fadeInUp 1s ease-out 0.2s both;
-    will-change: transform, opacity;
-    transform: translateZ(0);
 }
 
 .hero-buttons {
@@ -446,7 +439,7 @@ main {
 
 .section-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     padding: 0 1.5rem;
 }
 
@@ -461,19 +454,14 @@ main {
 .section-header p {
     font-size: 1.125rem;
     color: var(--text-secondary);
-    max-width: 650px;
+    max-width: 600px;
     margin: 0 auto;
-    line-height: 1.75;
+    line-height: 1.7;
 }
 
 .projects-section {
-    padding: 6rem 1.5rem;
+    padding: 5rem 1.5rem;
     background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out 0.3s forwards;
-    will-change: transform, opacity;
-    transform: translateZ(0);
-    contain: layout style paint;
 }
 
 .cards-container {
@@ -482,7 +470,7 @@ main {
     gap: 2rem;
     margin-bottom: 4rem;
     padding: 0 1.5rem;
-    max-width: 1400px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -494,17 +482,11 @@ main {
     overflow: hidden;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
     border: 1px solid var(--border-light);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    min-height: 280px;
+    transition: all 0.3s ease;
+    min-height: 260px;
     width: 100%;
-    opacity: 0;
-    animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.feature-card:nth-child(1) { animation-delay: 0.1s; }
-.feature-card:nth-child(2) { animation-delay: 0.2s; }
-.feature-card:nth-child(3) { animation-delay: 0.3s; }
-.feature-card:nth-child(4) { animation-delay: 0.4s; }
 
 .feature-card:hover {
     transform: translateY(-8px) scale(1.02);
@@ -670,16 +652,14 @@ main {
 }
 
 .cta-section {
-    padding: 6rem 1.5rem;
+    padding: 4rem 1.5rem;
     margin-top: 2rem;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     text-align: center;
     border-top: 1px solid var(--border);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out 0.5s forwards;
-    will-change: transform, opacity;
-    transform: translateZ(0);
-    contain: layout style paint;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-content {
@@ -717,9 +697,6 @@ main {
     font-size: 1.0625rem;
     box-shadow: var(--shadow-lg);
     transition: all 0.3s ease;
-}
-
-.btn-cta {
     position: relative;
     overflow: hidden;
 }
@@ -882,7 +859,7 @@ ul li::before {
 }
 
 .footer-content {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -929,7 +906,7 @@ ul li::before {
 }
 
 .footer-bottom {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -982,7 +959,7 @@ footer a:hover {
 @media (max-width: 968px) {
     .hero-section {
         min-height: 60vh;
-        padding: 3rem 1.5rem;
+        padding: 6rem 1.5rem 3rem 1.5rem;
     }
     
     .hero-title {
@@ -1017,10 +994,14 @@ footer a:hover {
 
 @media (max-width: 768px) {
     header {
-        padding: 0.75rem 1rem;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        will-change: auto;
+        padding: 0.875rem 1rem;
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+    }
+    
+    .mobile-menu {
+        top: 4.5rem;
+        max-height: calc(100vh - 5.5rem);
     }
     
     .brand-name {
@@ -1034,7 +1015,7 @@ footer a:hover {
     
 
     .hero-section {
-        padding: 3rem 1rem;
+        padding: 5rem 1rem 2.5rem 1rem;
         min-height: 55vh;
         animation: gradientShift 25s ease infinite;
         will-change: auto;
@@ -1154,9 +1135,23 @@ footer a:hover {
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .mobile-menu {
+        top: 4rem;
+        max-height: calc(100vh - 4.5rem);
+        width: calc(100vw - 1rem);
+        right: -100%;
+    }
+    
+    .mobile-menu.active {
+        right: 0.5rem !important;
+    }
 
     .hero-section {
-        padding: 2.5rem 1rem;
+        padding: 4.5rem 1rem 2rem 1rem;
         min-height: 50vh;
         animation: none;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4facfe 100%);
